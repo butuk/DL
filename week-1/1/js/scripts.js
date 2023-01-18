@@ -8,22 +8,24 @@ window.addEventListener('load', function(){
 	let operation = operationChanger.value;
 
 	inp1.addEventListener('input', filterInput);
-	inp1.addEventListener('input', readyToCount);
+	inp1.addEventListener('input', getReadyToCount);
 	inp2.addEventListener('input', filterInput);
-	inp2.addEventListener('input', readyToCount);
+	inp2.addEventListener('input', getReadyToCount);
 	operationChanger.addEventListener('change', changeOperation);
-	operationChanger.addEventListener('change', readyToCount);
+	operationChanger.addEventListener('change', getReadyToCount);
 	btnRun.addEventListener('click', calculate);
-	btnRun.addEventListener('click', disableBtn);
+	btnRun.addEventListener('click', disableElement);
 
 	function filterInput () {
-		let str = '';
 		const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+		let str = '';
+
 		for (let symbol of this.value) {
 			if(numbers.includes(symbol)) {
 				str += symbol;
 			}
 		}
+
 		this.value = str;
 	}
 
@@ -54,11 +56,11 @@ window.addEventListener('load', function(){
 		resultBox.innerHTML = total;
 	}
 
-	function disableBtn() {
+	function disableElement() {
 		this.disabled = true;
-	};
+	}
 
-	function readyToCount() {
+	function getReadyToCount() {
 		resultBox.innerHTML = '';
 		btnRun.disabled = false;
 	}
