@@ -8,9 +8,13 @@ window.addEventListener('load', function(){
 	let operation = operationChanger.value;
 
 	inp1.addEventListener('input', filterInput);
+	inp1.addEventListener('input', readyToCount);
 	inp2.addEventListener('input', filterInput);
+	inp2.addEventListener('input', readyToCount);
 	operationChanger.addEventListener('change', changeOperation);
+	operationChanger.addEventListener('change', readyToCount);
 	btnRun.addEventListener('click', calculate);
+	btnRun.addEventListener('click', disableBtn);
 
 	function filterInput () {
 		let str = '';
@@ -48,5 +52,14 @@ window.addEventListener('load', function(){
 				total = num1 / num2;
 		}
 		resultBox.innerHTML = total;
+	}
+
+	function disableBtn() {
+		this.disabled = true;
+	};
+
+	function readyToCount() {
+		resultBox.innerHTML = '';
+		btnRun.disabled = false;
 	}
 });
