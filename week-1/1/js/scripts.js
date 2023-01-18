@@ -7,7 +7,12 @@ window.addEventListener('load', function(){
 	let operationChanger = document.querySelector('.operation');
 	let operation = operationChanger.value;
 
-	filterInput = function () {
+	inp1.addEventListener('input', filterInput);
+	inp2.addEventListener('input', filterInput);
+	operationChanger.addEventListener('change', changeOperation);
+	btnRun.addEventListener('click', calculate);
+
+	function filterInput () {
 		let str = '';
 		let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 		for (let symbol of this.value) {
@@ -18,11 +23,14 @@ window.addEventListener('load', function(){
 		this.value = str;
 	}
 
-	changeOperation = function () {
+	function changeOperation () {
 		operation = this.value;
 	}
 
-	calculate = function(){
+	function calculate (){
+		if(!inp1.value || !inp2.value) {
+			return resultBox.innerHTML = 'Введите оба числа';
+		}
 		let num1 = parseInt(inp1.value);
 		let num2 = parseInt(inp2.value);
 		let total = 0;
@@ -40,12 +48,5 @@ window.addEventListener('load', function(){
 				total = num1 / num2;
 		}
 		resultBox.innerHTML = total;
-	};
-
-	inp1.addEventListener('input', filterInput);
-	inp2.addEventListener('input', filterInput);
-	operationChanger.addEventListener('change', changeOperation);
-	btnRun.addEventListener('click', calculate);
-
-
+	}
 });
