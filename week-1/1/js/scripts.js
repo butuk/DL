@@ -41,16 +41,16 @@ window.addEventListener('load', function(){
 		let num2 = parseInt(inp2.value);
 		let total = 0;
 		switch (operation) {
-			case '+':
+			case 'sum':
 				total = num1 + num2;
 				break;
-			case '−':
+			case 'sub':
 				total = num1 - num2;
 				break;
-			case '×':
+			case 'mult':
 				total = num1 * num2;
 				break;
-			case '/':
+			case 'div':
 				total = num1 / num2;
 		}
 		resultBox.innerHTML = total;
