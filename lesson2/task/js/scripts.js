@@ -1,16 +1,18 @@
 window.addEventListener('load', function () {
-  const btn = document.querySelector('.button');
+  const form = document.querySelector('form');
   const fields = document.querySelectorAll('.check');
+  const btn = document.querySelector('.button');
 
-  console.log(btn);
-  btn.addEventListener('click', validateForm);
+  form.addEventListener('click', (e) => {
+    e.target.classList.remove('err');
+  })
 
-  function validateForm() {
-    console.log('Hi');
+  btn.addEventListener('click', (e) => {
     fields.forEach(field => {
-      field.classList.add('err');
-    })
-  }
-
-  console.log('Hello');
+      if(!field.value) {
+        e.preventDefault();
+        field.classList.add('err');
+      }
+    });
+  });
 })
