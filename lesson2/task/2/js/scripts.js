@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
 	let box = document.querySelector('.box');
 	let btnAdd = document.querySelector('.btnAdd');
 
@@ -27,5 +27,5 @@ function findAndRecolorItem(node, parent) {
 			setRandomColor(node);
 			return;
 		}
-		findAndRecolorItem(node.parentNode);
+		findAndRecolorItem(node.parentNode, parent);
 }

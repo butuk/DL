@@ -1,18 +1,26 @@
-window.addEventListener('load', function () {
+'use strict';
+
+window.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('form');
-  const fields = document.querySelectorAll('.check');
-  const btn = document.querySelector('.button');
+  const fields = form.querySelectorAll('.check');
+  let isError = false;
 
-  form.addEventListener('click', (e) => {
-    e.target.classList.remove('err');
-  })
-
-  btn.addEventListener('click', (e) => {
+  form.addEventListener('submit', (e) => {
     fields.forEach(field => {
-      if(!field.value) {
-        e.preventDefault();
+      if(field.value.trim().length === 0) {
+        isError = true;
         field.classList.add('err');
+        field.value = '';
       }
-    });
+    })
+    if(isError){
+      e.preventDefault();
+    }
   });
+
+  form.addEventListener('focusin', (e) => {
+    if([...fields].includes(e.target)){
+      e.target.classList.remove('err');
+    }
+  })
 })
