@@ -5,3 +5,9 @@ html, body{
 .err{
 	outline: 1px solid red;
 }
+
+.errMessage {
+	color: red;
+	font-size: .7em;
+	padding-left: .5em;
+}
