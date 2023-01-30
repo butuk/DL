@@ -9,7 +9,7 @@ window.addEventListener('load', function(){
 		let link = menu.querySelector(`a[href$="${window.location.hash}"]`);
 		
 		if(link !== null){
-			applyMenuLinkClick(menu, link, false);
+			applyMenuLinkClick(menu, link, false, menu.offsetHeight);
 		}
 	}
 
@@ -18,15 +18,17 @@ window.addEventListener('load', function(){
 		applyMenuLinkClick(menu, e.target);
 	});
 
-	toTop.addEventListener('click', () => {
-		scrollWindow(0, true);
-	})
 	window.addEventListener('scroll', () => {
 		displayMoveButton(toTop, content, 22);
 	})
+
+	toTop.addEventListener('click', () => {
+		scrollWindow(0, true);
+	})
+
 });
 
-function applyMenuLinkClick(menu, link, animated = true){
+function applyMenuLinkClick(menu, link, animated = true, topOffset){
 	let target = document.querySelector(link.hash);
 
 	if(target !== null){
