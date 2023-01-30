@@ -28,3 +28,18 @@ html, body{
 .content{
    margin-top: 70px;
 }
+
+.scroll-to-top{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    color: white;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 10px;
+    right: 10px;
+    //display: none;
+}
