@@ -3,13 +3,13 @@ window.addEventListener('load', function(){
 	let toTop = document.querySelector('.scroll-to-top');
 	let content = document.querySelector('.content');
 
-	displayMoveButton(toTop, content, 22);
+	displayMoveButton(toTop, content, 0);
 	
 	if(window.location.hash.length > 0){
 		let link = menu.querySelector(`a[href$="${window.location.hash}"]`);
-		
+
 		if(link !== null){
-			applyMenuLinkClick(menu, link, false, menu.offsetHeight);
+			applyMenuLinkClick(menu, link, false);
 		}
 	}
 
@@ -19,7 +19,7 @@ window.addEventListener('load', function(){
 	});
 
 	window.addEventListener('scroll', () => {
-		displayMoveButton(toTop, content, 22);
+		displayMoveButton(toTop, content, 35);
 	})
 
 	toTop.addEventListener('click', () => {
@@ -28,7 +28,7 @@ window.addEventListener('load', function(){
 
 });
 
-function applyMenuLinkClick(menu, link, animated = true, topOffset){
+function applyMenuLinkClick(menu, link, animated = true){
 	let target = document.querySelector(link.hash);
 
 	if(target !== null){
@@ -38,10 +38,10 @@ function applyMenuLinkClick(menu, link, animated = true, topOffset){
 		if(activeLink !== null){
 			activeLink.classList.remove(activeClass);
 		}
-		
-		link.classList.add(activeClass);
 
-		scrollWindow((target.offsetTop - 70), animated);
+		link.classList.add(activeClass);
+		scrollWindow((target.offsetTop - menu.getBoundingClientRect().bottom - 20), animated);
+
 	}
 }
 
