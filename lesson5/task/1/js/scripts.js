@@ -4,11 +4,12 @@ window.addEventListener('load', function(){
 	delegate(box, 'click', '.ask', function(){
 		let item = this.closest('.item');
 		let answer = item.querySelector('.answer');
+		let height = answer.offsetHeight;
 		
 		if(answer.classList.contains('open')){
 			let animation = answer.animate([
-				{ opacity: 1 },
-				{ opacity: 0 }
+				{ height: `${height}px` },
+				{ height: 0 }
 			], { duration: 300 });
 
 			animation.addEventListener('finish', function(){
@@ -17,10 +18,11 @@ window.addEventListener('load', function(){
 		}
 		else{
 			answer.classList.add('open');
+			height = getHiddenHeight(answer);
 
 			answer.animate([
-				{ opacity: 0 },
-				{ opacity: 1 }
+				{ height: 0 },
+				{ height: `${height}px` }
 			], { duration: 300 });
 		}
 	});
@@ -35,4 +37,22 @@ function delegate(box, eventname, selector, fn){
 			fn.call(el, e);
 		}
 	});
+}
+
+function getHiddenHeight(el) {
+	if(!el?.cloneNode) {
+		return null;
+	}
+	const clone = el.cloneNode(true);
+	Object.assign(clone.style, {
+		overflow: 'hidden',
+		height: 'auto',
+		maxHeight: 'none',
+		visibility: 'hidden',
+		display: 'block',
+	})
+	el.after(clone);
+	const height = clone.offsetHeight;
+	clone.remove();
+	return height;
 }
