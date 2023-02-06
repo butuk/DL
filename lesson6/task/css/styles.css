@@ -7,6 +7,7 @@ html, body, ul, li{
 	width: 860px;
 	margin: 0 auto;
 	text-align: center;
+	margin-bottom: 3em;
 }
 
 .gallery .photos{
